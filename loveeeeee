@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Rose Day, Puchkaa!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Glitter background effect */
+        .glitter-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .glitter {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.7);
+            animation: glitter 4s infinite linear;
+        }
+        
+        @keyframes glitter {
+            0% { opacity: 0; transform: translateY(0) rotate(0deg); }
+            25% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        /* Header with love message */
+        .header {
+            text-align: center;
+            margin: 20px 0 40px;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .love-message {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 20px #ff2a70, 0 0 30px #ff2a70;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+        }
+        
+        .love-message::before, .love-message::after {
+            content: "❤";
+            font-size: 2.5rem;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        .love-message::before {
+            left: -10px;
+        }
+        
+        .love-message::after {
+            right: -10px;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: translateY(-50%) scale(1); }
+            5% { transform: translateY(-50%) scale(1.1); }
+            10% { transform: translateY(-50%) scale(1); }
+            15% { transform: translateY(-50%) scale(1.2); }
+            20% { transform: translateY(-50%) scale(1); }
+            100% { transform: translateY(-50%) scale(1); }
+        }
+        
+        /* Rose garden container */
+        .rose-garden {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            width: 100%;
+            height: 450px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        /* Rose with stem and leaves */
+        .rose-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 250px;
+            height: 100%;
+        }
+        
+        /* Rose petals */
+        .rose {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            z-index: 10;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .rose:nth-child(2) {
+            animation-delay: 1s;
+        }
+        
+        .rose:nth-child(3) {
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .petal {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(to bottom, #ff2a70, #ff2a70, #ff4d8d);
+            box-shadow: inset 0 0 20px rgba(255, 42, 112, 0.7);
+            transform-origin: center center;
+            transition: all 0.5s ease;
+        }
+        
+        /* Petal arrangement for each rose */
+        .rose-1 .petal-1 { width: 60px; height: 60px; top: 30px; left: 30px; }
+        .rose-1 .petal-2 { width: 65px; height: 65px; top: 25px; left: 25px; transform: rotate(45deg); }
+        .rose-1 .petal-3 { width: 70px; height: 70px; top: 20px; left: 20px; transform: rotate(90deg); }
+        .rose-1 .petal-4 { width: 75px; height: 75px; top: 15px; left: 15px; transform: rotate(135deg); }
+        .rose-1 .petal-5 { width: 80px; height: 80px; top: 10px; left: 10px; transform: rotate(180deg); }
+        
+        .rose-2 .petal-1 { width: 55px; height: 55px; top: 35px; left: 35px; background: linear-gradient(to bottom, #ff4081, #ff4081, #ff79b0); }
+        .rose-2 .petal-2 { width: 60px; height: 60px; top: 30px; left: 30px; transform: rotate(60deg); background: linear-gradient(to bottom, #ff4081, #ff4081, #ff79b0); }
+        .rose-2 .petal-3 { width: 65px; height: 65px; top: 25px; left: 25px; transform: rotate(120deg); background: linear-gradient(to bottom, #ff4081, #ff4081, #ff79b0); }
+        .rose-2 .petal-4 { width: 70px; height: 70px; top: 20px; left: 20px; transform: rotate(180deg); background: linear-gradient(to bottom, #ff4081, #ff4081, #ff79b0); }
+        
+        .rose-3 .petal-1 { width: 50px; height: 50px; top: 40px; left: 40px; background: linear-gradient(to bottom, #ff2a70, #ff2a70, #ff4d8d); }
+        .rose-3 .petal-2 { width: 55px; height: 55px; top: 35px; left: 35px; transform: rotate(72deg); background: linear-gradient(to bottom, #ff2a70, #ff2a70, #ff4d8d); }
+        .rose-3 .petal-3 { width: 60px; height: 60px; top: 30px; left: 30px; transform: rotate(144deg); background: linear-gradient(to bottom, #ff2a70, #ff2a70, #ff4d8d); }
+        .rose-3 .petal-4 { width: 65px; height: 65px; top: 25px; left: 25px; transform: rotate(216deg); background: linear-gradient(to bottom, #ff2a70, #ff2a70, #ff4d8d); }
+        .rose-3 .petal-5 { width: 70px; height: 70px; top: 20px; left: 20px; transform: rotate(288deg); background: linear-gradient(to bottom, #ff2a70, #ff2a70, #ff4d8d); }
+        
+        /* Rose center */
+        .center {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #ffcc00, #ff9900);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 11;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+        }
+        
+        /* Stem and leaves */
+        .stem {
+            width: 10px;
+            height: 250px;
+            background: linear-gradient(to right, #0a5c0a, #0e8c0e, #0a5c0a);
+            border-radius: 5px;
+            position: relative;
+            margin-top: -5px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 25px;
+            background: linear-gradient(to bottom, #0e8c0e, #0a5c0a);
+            border-radius: 50% 0 50% 0;
+            z-index: 5;
+            animation: sway 4s infinite alternate;
+        }
+        
+        .leaf-left {
+            left: 5px;
+            transform: rotate(30deg);
+        }
+        
+        .leaf-right {
+            right: 5px;
+            transform: rotate(-30deg);
+        }
+        
+        .leaf-1 { top: 50px; }
+        .leaf-2 { top: 120px; animation-delay: 0.5s; }
+        .leaf-3 { top: 190px; animation-delay: 1s; }
+        
+        @keyframes sway {
+            0% { transform: rotate(30deg) scale(1); }
+            100% { transform: rotate(35deg) scale(1.05); }
+        }
+        
+        .leaf-right {
+            animation-name: sway-right;
+        }
+        
+        @keyframes sway-right {
+            0% { transform: rotate(-30deg) scale(1); }
+            100% { transform: rotate(-35deg) scale(1.05); }
+        }
+        
+        /* Footer messages */
+        .footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .made-by {
+            font-size: 1.8rem;
+            color: #ffccff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #ff66cc;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 900px) {
+            .rose-garden {
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+                gap: 80px;
+            }
+            
+            .rose-container {
+                margin-bottom: 30px;
+            }
+            
+            .love-message {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .love-message {
+                font-size: 2rem;
+            }
+            
+            .made-by {
+                font-size: 1.5rem;
+            }
+            
+            .rose {
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Glitter background -->
+    <div class="glitter-bg" id="glitter-bg"></div>
+    
+    <div class="container">
+        <!-- Header with love message -->
+        <header class="header">
+            <h1 class="love-message">I love you Puchkaa</h1>
+        </header>
+        
+        <!-- Rose garden -->
+        <div class="rose-garden">
+            <!-- Rose 1 -->
+            <div class="rose-container">
+                <div class="rose rose-1">
+                    <div class="petal petal-1"></div>
+                    <div class="petal petal-2"></div>
+                    <div class="petal petal-3"></div>
+                    <div class="petal petal-4"></div>
+                    <div class="petal petal-5"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf-left leaf-1"></div>
+                    <div class="leaf leaf-right leaf-2"></div>
+                    <div class="leaf leaf-left leaf-3"></div>
+                </div>
+            </div>
+            
+            <!-- Rose 2 -->
+            <div class="rose-container">
+                <div class="rose rose-2">
+                    <div class="petal petal-1"></div>
+                    <div class="petal petal-2"></div>
+                    <div class="petal petal-3"></div>
+                    <div class="petal petal-4"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf-left leaf-1"></div>
+                    <div class="leaf leaf-right leaf-2"></div>
+                    <div class="leaf leaf-left leaf-3"></div>
+                </div>
+            </div>
+            
+            <!-- Rose 3 -->
+            <div class="rose-container">
+                <div class="rose rose-3">
+                    <div class="petal petal-1"></div>
+                    <div class="petal petal-2"></div>
+                    <div class="petal petal-3"></div>
+                    <div class="petal petal-4"></div>
+                    <div class="petal petal-5"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf-left leaf-1"></div>
+                    <div class="leaf leaf-right leaf-2"></div>
+                    <div class="leaf leaf-left leaf-3"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer with messages -->
+        <footer class="footer">
+            <div class="made-by">Made with love by Moti</div>
+            <div class="copyright">
+                &copy; 2023 Rose Day Gift for Puchkaa. All rights reserved. | Designed with ❤ for the most special person
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Create glitter effect
+        function createGlitter() {
+            const glitterBg = document.getElementById('glitter-bg');
+            const glitterCount = 80;
+            
+            for (let i = 0; i < glitterCount; i++) {
+                const glitter = document.createElement('div');
+                glitter.classList.add('glitter');
+                
+                // Random position
+                glitter.style.left = `${Math.random() * 100}%`;
+                glitter.style.top = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = Math.random() * 6 + 2;
+                glitter.style.width = `${size}px`;
+                glitter.style.height = `${size}px`;
+                
+                // Random color
+                const colors = ['#ffccff', '#ff99cc', '#ff66cc', '#cc99ff', '#ffffff'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                glitter.style.backgroundColor = color;
+                glitter.style.boxShadow = `0 0 10px 2px ${color}`;
+                
+                // Random animation delay and duration
+                glitter.style.animationDelay = `${Math.random() * 5}s`;
+                glitter.style.animationDuration = `${Math.random() * 3 + 3}s`;
+                
+                glitterBg.appendChild(glitter);
+            }
+        }
+        
+        // Add petal animation on hover
+        document.querySelectorAll('.rose').forEach(rose => {
+            rose.addEventListener('mouseenter', function() {
+                const petals = this.querySelectorAll('.petal');
+                petals.forEach(petal => {
+                    petal.style.transform = `${petal.style.transform} scale(1.1)`;
+                });
+            });
+            
+            rose.addEventListener('mouseleave', function() {
+                const petals = this.querySelectorAll('.petal');
+                petals.forEach(petal => {
+                    petal.style.transform = petal.style.transform.replace('scale(1.1)', '');
+                });
+            });
+        });
+        
+        // Initialize when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            createGlitter();
+            
+            // Add a little interactive message
+            setTimeout(() => {
+                alert("Happy Rose Day, Puchkaa! 💖 Each rose represents my love for you - beautiful, unique, and forever blooming!");
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
